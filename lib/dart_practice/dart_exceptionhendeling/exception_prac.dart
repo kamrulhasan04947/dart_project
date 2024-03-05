@@ -5,3 +5,15 @@
 *  and typically the isolate and its program are terminated.
 */
 
+void exStarting(){
+  print('''
+  
+          ||||||||||||||
+         | 
+         |
+         | |||||||||||||
+         |
+         | 
+          |||||||||||||||   
+  ''');
+}
