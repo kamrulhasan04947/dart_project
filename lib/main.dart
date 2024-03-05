@@ -4,9 +4,6 @@ import 'dart:io';
 
 import 'package:dart_project/dart_practice/ascync_prog/asyncprog.dart';
 
-import 'dart_practice/dart_exceptionhendeling/exception_prac.dart';
-
-
 
 void main(){
   print('''
@@ -30,8 +27,6 @@ void main(){
   print('Enter start program number from above:( 1  means variable)\n');
   int? startprogram = int.tryParse(stdin.readLineSync()!);
   switch(startprogram){
-    case 11:
-      exStarting();
     case 12:
       ascyncStarting();
     default:
