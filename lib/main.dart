@@ -1,33 +1,52 @@
-
-
 import 'dart:io';
-
 import 'package:dart_project/common.dart';
 import 'package:dart_project/dart_practice/ascync_prog/asyncprog.dart';
-
 import 'dart_practice/dart_exceptionhendeling/exception_prac.dart';
 
 
 
 
-void check( bool flug){
-  CustomException keyNotFoundException = CustomException(name: "Entered key not found . Please Enter correct key");
-  try{
-    print("Do you want to execute another one: yes(type y) , No (type) n:\n");
-    String decision = stdin.readLineSync()!.toLowerCase();
-    if(decision == 'n'){
-      flug = false;
-    } else if (decision == 'y'){
-      flug = true;
-    }else{
-      throw keyNotFoundException;
-    }
-  }catch (e){
-    keyNotFoundException.message();
+
+
+void execute(){
+  print('Enter start program number from above:( 1  means variable)\n');
+  int? startprogram = int.tryParse(stdin.readLineSync()!);
+  switch(startprogram){
+    case 11:
+      exStarting();
+    case 12:
+      ascyncStarting();
+    default:
+      print('This Topic is not added yet!');
   }
 }
 
-void execute(){
+
+void controller(){
+  startUp();
+  bool flug =true;
+  CustomException keyNotFoundException = CustomException(name: 'Invalid Key.Please enter proper key');
+  while(flug){
+    try {
+      execute();
+      print("Do you want to execute. yes(y) or No (n):\n");
+      String decision = stdin.readLineSync()!.toLowerCase();
+      if (decision == 'y') {
+        flug = true;
+      } else if( decision == 'n'){
+        flug = false;
+      }else{
+        throw keyNotFoundException;
+      }
+    }
+    catch(e){
+       keyNotFoundException.message();
+    }
+
+  }
+}
+
+void startUp(){
   print('''
         ---------------------------------------------------------------------------------                                             
        |                                                                                 |
@@ -46,27 +65,12 @@ void execute(){
         ---------------------------------------------------------------------------------                                                     
   ''');
 
-  print('Enter start program number from above:( 1  means variable)\n');
-  int? startprogram = int.tryParse(stdin.readLineSync()!);
-  switch(startprogram){
-    case 11:
-      exStarting();
-    case 12:
-      ascyncStarting();
-    default:
-      print('This Topic is not added yet!');
-  }
 }
 
 void main(){
 
-  bool flug =true;
 
-  while(flug){
-    execute();
-    check(flug);
-  }
-
+  controller();
 
 }
 
