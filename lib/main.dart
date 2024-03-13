@@ -2,13 +2,32 @@
 
 import 'dart:io';
 
+import 'package:dart_project/common.dart';
 import 'package:dart_project/dart_practice/ascync_prog/asyncprog.dart';
 
 import 'dart_practice/dart_exceptionhendeling/exception_prac.dart';
 
 
 
-void main(){
+
+void check( bool flug){
+  CustomException keyNotFoundException = CustomException(name: "Entered key not found . Please Enter correct key");
+  try{
+    print("Do you want to execute another one: yes(type y) , No (type) n:\n");
+    String decision = stdin.readLineSync()!.toLowerCase();
+    if(decision == 'n'){
+      flug = false;
+    } else if (decision == 'y'){
+      flug = true;
+    }else{
+      throw keyNotFoundException;
+    }
+  }catch (e){
+    keyNotFoundException.message();
+  }
+}
+
+void execute(){
   print('''
         ---------------------------------------------------------------------------------                                             
        |                                                                                 |
@@ -37,5 +56,20 @@ void main(){
     default:
       print('This Topic is not added yet!');
   }
+}
+
+void main(){
+
+  bool flug =true;
+
+  while(flug){
+    execute();
+    check(flug);
+  }
+
 
 }
+
+
+
+
